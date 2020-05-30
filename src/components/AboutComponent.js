@@ -1,7 +1,8 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+import { Stagger } from 'react-animation-components';
+import { baseUrl } from '../shared/baseUrl';
 
 function RenderLeaders({ leaders }) {
     const list = leaders.map((leader) => {
@@ -9,7 +10,7 @@ function RenderLeaders({ leaders }) {
             <div key={leader.id} className="col-12">
                 <Media>
                     <Media left className="d-flex mr-3 img-thumbnail">
-                        <Media object src={leader.image} alt={leader.name} />
+                        <Media object src={baseUrl + leader.image} alt={leader.name} />
                     </Media>
                     <Media body>
                         <h2>{leader.name}</h2>
@@ -79,7 +80,9 @@ function About(props) {
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
-                <RenderLeaders leaders={props.leaders} />
+                <Stagger in>
+                    <RenderLeaders leaders={props.leaders} />
+                </Stagger>
             </div>
         </div>
     );
